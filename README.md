@@ -10,7 +10,7 @@
 <p align="center"><a href="#install"><strong>Install Habits</strong></a></p>
 
 <!-- <p align="center">
-  <img src="screenshots/hero.png" width="600" alt="Habits — 14-day tracking grid with streaks">
+  <img src="screenshots/hero.png" width="600" alt="Habits — 7-day tracking grid with streaks">
 </p> -->
 
 ## Install
@@ -23,7 +23,7 @@
 
 ## Features
 
-**14-day grid** — See the last two weeks at a glance. Each habit gets a row of checkboxes across 14 days. Navigate forward and back to review older history.
+**7-day grid** — See the last week at a glance. Each habit gets a row of checkboxes across 7 days. Navigate forward and back to review older history.
 
 **Three-state tracking** — Click a checkbox to mark it done (green check), click again to mark skipped (grey X), click once more to clear it. Track what you did and what you intentionally skipped.
 

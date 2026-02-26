@@ -15,7 +15,7 @@ const STORAGE_KEYS = {
 // App state
 let habits = [];
 let completions = {};
-const DAYS_TO_SHOW = 14;
+const DAYS_TO_SHOW = 7;
 let viewEndDate = new Date();
 let draggedHabit = null;
 
@@ -279,7 +279,7 @@ function renderHabits() {
 
   for (const habit of sortedHabits) {
     const streak = calculateStreak(habit.id);
-    const streakText = streak.current > 0 ? `${streak.current} day streak` : '';
+    const streakText = streak.current > 0 ? `${streak.current}` : '';
 
     html += `
       <div class="habit-row" data-habit-id="${habit.id}" draggable="true">
@@ -292,7 +292,7 @@ function renderHabits() {
             </svg>
           </span>
           <span class="habit-name">${escapeHtml(habit.name)}</span>
-          ${streakText ? `<span class="habit-streak">${streakText}</span>` : ''}
+          ${streakText ? `<span class="habit-streak" title="${streak.current} day streak">${streakText}</span>` : ''}
           <button class="habit-delete" data-delete="${habit.id}" title="Delete habit">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
@@ -335,7 +335,7 @@ function updateDateRangeLabel() {
   viewEnd.setHours(0, 0, 0, 0);
 
   if (viewEnd.getTime() === today.getTime()) {
-    label.textContent = 'Last 14 Days';
+    label.textContent = 'This Week';
   } else {
     const dates = getDisplayDates();
     const startDate = dates[0];
@@ -426,7 +426,7 @@ function setupEventListeners() {
 
   // Date navigation
   document.getElementById('prevWeek').addEventListener('click', () => {
-    viewEndDate.setDate(viewEndDate.getDate() - 14);
+    viewEndDate.setDate(viewEndDate.getDate() - 7);
     renderDayHeaders();
     renderHabits();
   });
@@ -435,7 +435,7 @@ function setupEventListeners() {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     const proposedEnd = new Date(viewEndDate);
-    proposedEnd.setDate(proposedEnd.getDate() + 14);
+    proposedEnd.setDate(proposedEnd.getDate() + 7);
 
     if (proposedEnd <= today) {
       viewEndDate = proposedEnd;

@@ -185,7 +185,7 @@ body {
 /* Day Headers */
 .day-headers {
   display: grid;
-  grid-template-columns: 160px repeat(14, 1fr);
+  grid-template-columns: 160px repeat(7, 1fr);
   gap: 1px;
   padding: 16px 12px 12px;
   border-bottom: 1px solid var(--border);
@@ -228,7 +228,7 @@ body {
 /* Habit Row */
 .habit-row {
   display: grid;
-  grid-template-columns: 160px repeat(14, 1fr);
+  grid-template-columns: 160px repeat(7, 1fr);
   gap: 1px;
   padding: 12px 12px;
   border-bottom: 1px solid var(--border);
@@ -490,7 +490,7 @@ body {
 
   .day-headers,
   .habit-row {
-    grid-template-columns: 120px repeat(14, 1fr);
+    grid-template-columns: 120px repeat(7, 1fr);
   }
 
   .day-header .day-date {
@@ -510,7 +510,7 @@ body {
 @media (max-width: 600px) {
   .day-headers,
   .habit-row {
-    grid-template-columns: 100px repeat(14, 1fr);
+    grid-template-columns: 100px repeat(7, 1fr);
   }
 
   .habit-checkbox {
