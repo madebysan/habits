@@ -15,7 +15,7 @@ const STORAGE_KEYS = {
 // App state
 let habits = [];
 let completions = {};
-const DAYS_TO_SHOW = 7;
+const DAYS_TO_SHOW = 14;
 let viewEndDate = new Date();
 let draggedHabit = null;
 
@@ -307,8 +307,10 @@ function renderHabits() {
       const stateLabel = state === 'done' ? 'Done' : state === 'skipped' ? 'Skipped' : 'Not tracked';
       const dayLabel = date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
 
+      const isToday = dateStr === formatDate(new Date());
+
       html += `
-        <div class="habit-day">
+        <div class="habit-day ${isToday ? 'is-today' : ''}">
           <button
             class="habit-checkbox ${state === 'done' ? 'done' : ''} ${state === 'skipped' ? 'skipped' : ''}"
             data-habit="${habit.id}"
@@ -335,7 +337,7 @@ function updateDateRangeLabel() {
   viewEnd.setHours(0, 0, 0, 0);
 
   if (viewEnd.getTime() === today.getTime()) {
-    label.textContent = 'This Week';
+    label.textContent = 'Last 14 Days';
   } else {
     const dates = getDisplayDates();
     const startDate = dates[0];
@@ -426,7 +428,7 @@ function setupEventListeners() {
 
   // Date navigation
   document.getElementById('prevWeek').addEventListener('click', () => {
-    viewEndDate.setDate(viewEndDate.getDate() - 7);
+    viewEndDate.setDate(viewEndDate.getDate() - 14);
     renderDayHeaders();
     renderHabits();
   });
@@ -435,7 +437,7 @@ function setupEventListeners() {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     const proposedEnd = new Date(viewEndDate);
-    proposedEnd.setDate(proposedEnd.getDate() + 7);
+    proposedEnd.setDate(proposedEnd.getDate() + 14);
 
     if (proposedEnd <= today) {
       viewEndDate = proposedEnd;
@@ -696,31 +698,29 @@ function escapeHtml(text) {
 
 function setupNewTabToggle() {
   const btn = document.getElementById('newTabToggle');
-  const label = document.getElementById('newTabLabel');
 
   // Load current state
   chrome.storage.local.get('useAsNewTab', (result) => {
-    const enabled = !!result.useAsNewTab;
-    updateNewTabButton(btn, label, enabled);
+    updateNewTabButton(btn, !!result.useAsNewTab);
   });
 
   btn.addEventListener('click', () => {
     chrome.storage.local.get('useAsNewTab', (result) => {
       const newValue = !result.useAsNewTab;
       chrome.storage.local.set({ useAsNewTab: newValue }, () => {
-        updateNewTabButton(btn, label, newValue);
+        updateNewTabButton(btn, newValue);
         showToast(newValue ? 'Habits will show on new tabs' : 'New tabs back to default');
       });
     });
   });
 }
 
-function updateNewTabButton(btn, label, enabled) {
+function updateNewTabButton(btn, enabled) {
   if (enabled) {
     btn.classList.add('btn-active');
-    label.textContent = 'New Tab: On';
+    btn.title = 'New tab override is on — click to turn off';
   } else {
     btn.classList.remove('btn-active');
-    label.textContent = 'New Tab: Off';
+    btn.title = 'Use as new tab page';
   }
 }

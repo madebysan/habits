@@ -91,15 +91,15 @@ body {
   color: var(--text);
 }
 
-.btn-secondary.btn-active {
-  background: var(--primary);
-  color: white;
-  border-color: var(--primary);
+.btn-active {
+  background: var(--primary) !important;
+  color: white !important;
+  border-color: var(--primary) !important;
 }
 
-.btn-secondary.btn-active:hover {
-  background: var(--primary-hover);
-  color: white;
+.btn-active:hover {
+  background: var(--primary-hover) !important;
+  color: white !important;
 }
 
 .btn-danger {
@@ -185,7 +185,7 @@ body {
 /* Day Headers */
 .day-headers {
   display: grid;
-  grid-template-columns: 1fr repeat(7, 48px);
+  grid-template-columns: 1fr repeat(14, 36px);
   gap: 1px;
   padding: 16px 12px 12px;
   border-bottom: 1px solid var(--border);
@@ -228,7 +228,7 @@ body {
 /* Habit Row */
 .habit-row {
   display: grid;
-  grid-template-columns: 1fr repeat(7, 48px);
+  grid-template-columns: 1fr repeat(14, 36px);
   gap: 1px;
   padding: 12px 12px;
   border-bottom: 1px solid var(--border);
@@ -490,7 +490,7 @@ body {
 
   .day-headers,
   .habit-row {
-    grid-template-columns: 1fr repeat(7, 40px);
+    grid-template-columns: 1fr repeat(14, 40px);
   }
 
   .day-header .day-date {
@@ -510,7 +510,7 @@ body {
 @media (max-width: 600px) {
   .day-headers,
   .habit-row {
-    grid-template-columns: 1fr repeat(7, 32px);
+    grid-template-columns: 1fr repeat(14, 32px);
   }
 
   .habit-checkbox {
