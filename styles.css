@@ -1,0 +1,528 @@
+/* Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --border: #e5e5e5;
+  --text: #171717;
+  --text-secondary: #737373;
+  --text-muted: #a3a3a3;
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --danger: #ef4444;
+  --danger-hover: #dc2626;
+  --success: #22c55e;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* Container */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.header h1 {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+}
+
+.btn-secondary {
+  background: var(--surface);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.btn-secondary.btn-active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.btn-secondary.btn-active:hover {
+  background: var(--primary-hover);
+  color: white;
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: white;
+}
+
+.btn-danger:hover {
+  background: var(--danger-hover);
+}
+
+.btn-icon {
+  padding: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.btn-icon:hover {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.btn-small {
+  padding: 6px 12px;
+  font-size: 13px;
+  background: var(--surface);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+.btn-small:hover {
+  background: var(--bg);
+}
+
+/* Add Habit Form */
+.add-habit-form {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.add-habit-form input[type="text"] {
+  flex: 1;
+  padding: 12px 16px;
+  font-size: 15px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.add-habit-form input[type="text"]:focus {
+  border-color: var(--primary);
+}
+
+/* Week Navigation */
+.week-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.week-label {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  min-width: 140px;
+  text-align: center;
+}
+
+/* Habits Container */
+.habits-container {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+/* Day Headers */
+.day-headers {
+  display: grid;
+  grid-template-columns: 160px repeat(14, 1fr);
+  gap: 1px;
+  padding: 16px 12px 12px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.day-header {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+}
+
+.day-header:first-child {
+  text-align: left;
+}
+
+.day-header .day-date {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0;
+  text-transform: none;
+  margin-top: 4px;
+}
+
+.day-header.is-today .day-date {
+  color: var(--primary);
+}
+
+/* Habits List */
+.habits-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Habit Row */
+.habit-row {
+  display: grid;
+  grid-template-columns: 160px repeat(14, 1fr);
+  gap: 1px;
+  padding: 12px 12px;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+}
+
+.habit-row:last-child {
+  border-bottom: none;
+}
+
+.habit-row:hover {
+  background: var(--bg);
+}
+
+.habit-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Drag Handle */
+.drag-handle {
+  cursor: grab;
+  color: var(--text-muted);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  flex-shrink: 0;
+  padding: 4px;
+}
+
+.habit-row:hover .drag-handle {
+  opacity: 1;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+/* Drag States */
+.habit-row.dragging {
+  opacity: 0.5;
+  background: var(--bg);
+}
+
+.habit-row.drag-over {
+  border-top: 2px solid var(--primary);
+}
+
+.habit-name {
+  font-size: 15px;
+  font-weight: 500;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: default;
+}
+
+.habit-name:hover {
+  color: var(--primary);
+}
+
+.habit-name-input {
+  width: 100%;
+  padding: 2px 6px;
+  font-size: 15px;
+  font-weight: 500;
+  border: 1px solid var(--primary);
+  border-radius: 4px;
+  background: var(--surface);
+  outline: none;
+}
+
+.habit-streak {
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.habit-delete {
+  opacity: 0;
+  padding: 4px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+}
+
+.habit-row:hover .habit-delete {
+  opacity: 1;
+}
+
+.habit-delete:hover {
+  color: var(--danger);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* Checkboxes */
+.habit-day {
+  display: flex;
+  justify-content: center;
+}
+
+.habit-checkbox:hover {
+  border-color: var(--text-muted);
+}
+
+/* Done state - green with checkmark */
+.habit-checkbox.done {
+  background: var(--success);
+  border-color: var(--success);
+}
+
+.habit-checkbox.done::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  background: white;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+}
+
+/* Skipped state - grey with X */
+.habit-checkbox.skipped {
+  background: #d4d4d4;
+  border-color: #d4d4d4;
+}
+
+.habit-checkbox.skipped::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background: #737373;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'%3E%3Cline x1='18' y1='6' x2='6' y2='18'/%3E%3Cline x1='6' y1='6' x2='18' y2='18'/%3E%3C/svg%3E");
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+}
+
+/* Empty State */
+.empty-state {
+  padding: 64px 24px;
+  text-align: center;
+}
+
+.empty-state p {
+  font-size: 16px;
+  color: var(--text-secondary);
+}
+
+.empty-hint {
+  margin-top: 8px;
+  font-size: 14px !important;
+  color: var(--text-muted) !important;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal[hidden] {
+  display: none;
+}
+
+.toast[hidden] {
+  display: none;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  position: relative;
+  background: var(--surface);
+  padding: 24px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  max-width: 400px;
+  width: 90%;
+}
+
+.modal-content h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.modal-content p {
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--text);
+  color: white;
+  padding: 12px 24px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: var(--shadow-lg);
+  z-index: 200;
+}
+
+/* Make checkboxes smaller for 14 columns */
+.habit-checkbox {
+  width: 24px;
+  height: 24px;
+  border-radius: 5px;
+  border: 2px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  position: relative;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .container {
+    padding: 24px 16px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .day-headers,
+  .habit-row {
+    grid-template-columns: 120px repeat(14, 1fr);
+  }
+
+  .day-header .day-date {
+    font-size: 14px;
+  }
+
+  .habit-checkbox {
+    width: 20px;
+    height: 20px;
+  }
+
+  .habit-name {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .day-headers,
+  .habit-row {
+    grid-template-columns: 100px repeat(14, 1fr);
+  }
+
+  .habit-checkbox {
+    width: 16px;
+    height: 16px;
+  }
+
+  .day-header {
+    font-size: 10px;
+  }
+
+  .day-header .day-date {
+    font-size: 12px;
+  }
+}
