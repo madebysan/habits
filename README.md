@@ -63,6 +63,10 @@ The only permission requested is **Storage** — used to save your habits and co
 
 - Chrome (or Chromium-based browser)
 
+## Feedback
+
+Found a bug or have a feature idea? [Open an issue](https://github.com/madebysan/habits/issues).
+
 ## License
 
 [MIT](LICENSE)
